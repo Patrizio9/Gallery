@@ -12,6 +12,11 @@ provider "docker" {
 
 resource "docker_image" "nginx_image" {
   name = "nginx:alpine"
+  build {
+    context    = abspath("${path.module}")
+    dockerfile = abspath("${path.module}/Dockerfile")
+  }
+}
 }
 
 resource "docker_container" "nginx_container" {
